@@ -3,7 +3,17 @@
 import { useEffect, useState } from 'react';
 import { COMPANY, MAILTO, NAV_LINKS as BASE_NAV_LINKS } from '@/lib/constants';
 
-const NAV_LINKS = BASE_NAV_LINKS.filter((link) => link.href !== '#method');
+const CLEAN_NAV_LINKS = BASE_NAV_LINKS.filter(
+  (link) => link.href !== '#method' && link.href !== '#services'
+);
+
+const SERVICES_LINK =
+  BASE_NAV_LINKS.find((link) => link.href === '#services') ?? {
+    href: '#services',
+    label: 'Services',
+  };
+
+const NAV_LINKS = [...CLEAN_NAV_LINKS, SERVICES_LINK];
 
 function RoseMark() {
   return (
@@ -41,11 +51,13 @@ export default function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
+
     return () => {
       document.body.style.overflow = '';
     };
