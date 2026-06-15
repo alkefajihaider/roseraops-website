@@ -32,7 +32,7 @@ export default function Home() {
         <PhilosophySection /> 
         <ResearchSection /> 
         <ThesisSection /> 
-        <FounderThesisSection /> 
+       
         <ServicesSection /> 
         <CTASection />
       </main>
