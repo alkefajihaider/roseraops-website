@@ -31,14 +31,15 @@ export default function Home() {
         <ProblemSection />
         <PhilosophySection />
     
-        <ServicesSection />
+       <ResearchSection />
     
-        <BuiltWithMethodSection />
+    
       
-        <ResearchSection />
+  
         <ThesisSection />
       
         <FounderThesisSection />
+         <ServicesSection />
         <CTASection />
       </main>
       <Footer />
