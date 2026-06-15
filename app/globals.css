@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ivory: #faf7f0;
+  --ink: #10202b;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background-color: var(--ivory);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* Anchor targets clear the sticky nav */
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+/* Keyframes referenced from raw CSS / inline styles must be declared here:
+   Tailwind only emits @keyframes that appear in generated animate-* utilities. */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes petal {
+  0% {
+    transform: translateY(-8%) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(115vh) translateX(28px) rotate(220deg);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-eyebrow text-emerald;
+  }
+
+  .eyebrow-clay {
+    color: #985252; /* deeper rose — passes WCAG AA on ivory (5.36:1) */
+  }
+
+  /* Frosted glass card */
+  .glass {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.78) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(16, 32, 43, 0.07);
+  }
+
+  .card-surface {
+    @apply rounded-2xl bg-card shadow-soft ring-1 ring-ink/5;
+  }
+
+  /* Primary button with light sheen sweep on hover */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-emerald px-6 py-3 text-sm font-semibold text-ivory shadow-soft transition-all duration-300;
+  }
+  .btn-primary:hover {
+    @apply -translate-y-0.5 shadow-lift;
+    background-color: #275f50;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: theme('backgroundImage.sheen');
+    transform: translateX(-130%);
+    transition: transform 0.7s ease;
+  }
+  .btn-primary:hover::after {
+    transform: translateX(130%);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-card/60 px-6 py-3 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-clay/50 hover:bg-card;
+  }
+
+  .link-quiet {
+    @apply text-sm font-medium text-ink/70 transition-colors hover:text-emerald;
+  }
+
+  .lift {
+    @apply transition-all duration-500;
+  }
+  .lift:hover {
+    @apply -translate-y-1.5 shadow-lift;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-ink/10 to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .tabnums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Scroll-reveal. Hidden state applies only when JS is active (html.js is set
+     by an inline script before paint). Without JS, content stays fully visible
+     and indexable; with JS it reveals on scroll via IntersectionObserver. */
+  html.js .reveal-init {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  html.js .reveal-init.is-visible {
+    animation: reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+/* Honor user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal-init {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Focus visibility for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
