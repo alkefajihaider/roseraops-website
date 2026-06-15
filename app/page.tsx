@@ -27,19 +27,13 @@ export default function Home() {
       <FloralBackground />
       <Navbar />
       <main id="main-content" tabIndex={-1}>
-        <Hero />
-        <ProblemSection />
-        <PhilosophySection />
-    
-       <ResearchSection />
-    
-    
-      
-  
-        <ThesisSection />
-      
-        <FounderThesisSection />
-         <ServicesSection />
+<Hero /> 
+        <ProblemSection /> 
+        <PhilosophySection /> 
+        <ResearchSection /> 
+        <ThesisSection /> 
+        <FounderThesisSection /> 
+        <ServicesSection /> 
         <CTASection />
       </main>
       <Footer />
