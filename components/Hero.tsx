@@ -1,16 +1,11 @@
-import {
-  CTA_PRIMARY,
-  CTA_SECONDARY,
-  HERO_COST_CARDS,
-  MAILTO,
-} from '@/lib/constants';
+import { HERO_COST_CARDS, MAILTO } from '@/lib/constants';
 import AnimatedCard from './AnimatedCard';
 
-// Ring node positions as % within the visual panel (matches SVG vine endpoints).
+// Ring node positions as % within the visual panel.
 const NODES = [
-  { label: 'Frame', x: 50, y: 11, accent: 'emerald' },
-  { label: 'Filter', x: 85, y: 29, accent: 'teal' },
-  { label: 'Automate', x: 80, y: 83, accent: 'gold' },
+  { label: 'Measure', x: 50, y: 11, accent: 'emerald' },
+  { label: 'Reduce', x: 85, y: 29, accent: 'teal' },
+  { label: 'Systemize', x: 80, y: 83, accent: 'gold' },
   { label: 'Verify', x: 22, y: 83, accent: 'clay' },
   { label: 'Optimize', x: 15, y: 30, accent: 'sage' },
 ];
@@ -30,6 +25,7 @@ const accentText: Record<string, string> = {
   clay: 'text-[#985252]',
   sage: 'text-emerald',
 };
+
 const accentDot: Record<string, string> = {
   emerald: '#2F6F5E',
   teal: '#4CA6A8',
@@ -48,14 +44,13 @@ const toneStyles: Record<string, string> = {
 function Dashboard() {
   return (
     <div className="relative mx-auto w-full max-w-xl">
-      {/* Soft glow behind the panel */}
       <div className="absolute inset-6 -z-10 rounded-[2rem] bg-[radial-gradient(circle_at_50%_40%,rgba(216,167,167,0.35),transparent_70%)] blur-2xl" />
 
       <div className="glass relative rounded-[1.75rem] p-5 shadow-glow sm:p-7">
         <div className="mb-5 flex items-center justify-between">
           <span className="eyebrow">
             <span aria-hidden className="inline-block h-px w-5 bg-current opacity-60" />
-            Human-First Workflow
+            AI SpendOps Workflow
           </span>
           <span className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-rose/70" />
@@ -64,7 +59,6 @@ function Dashboard() {
           </span>
         </div>
 
-        {/* Node graph */}
         <div className="relative aspect-[4/3.5] w-full">
           <svg
             viewBox="0 0 100 100"
@@ -104,7 +98,6 @@ function Dashboard() {
             ))}
           </svg>
 
-          {/* Center: Human Judgment */}
           <div
             className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
             style={{ left: '50%', top: '46%' }}
@@ -116,12 +109,11 @@ function Dashboard() {
                 Judgment
               </div>
               <div className="mt-1 text-[10px] font-medium uppercase tracking-eyebrow text-emerald">
-                Owns the decision
+                Controls the system
               </div>
             </div>
           </div>
 
-          {/* Ring nodes */}
           {NODES.map((n) => (
             <div
               key={n.label}
@@ -141,7 +133,6 @@ function Dashboard() {
           ))}
         </div>
 
-        {/* Cost telemetry row */}
         <div className="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
           {HERO_COST_CARDS.map((c) => (
             <div
@@ -170,15 +161,15 @@ export default function Hero() {
           <AnimatedCard>
             <span className="eyebrow">
               <span aria-hidden className="inline-block h-px w-6 bg-current opacity-60" />
-              Enterprise AI cost discipline
+              AI SpendOps for the enterprise AI era
             </span>
           </AnimatedCard>
 
           <AnimatedCard delay={80}>
             <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-ink text-balance sm:text-5xl lg:text-[3.4rem]">
-              Enterprise AI is getting expensive because most teams are using it{' '}
+              Companies are adopting AI faster than they can control the{' '}
               <span className="relative whitespace-nowrap text-clay">
-                wrong
+                cost
                 <svg
                   className="absolute -bottom-2 left-0 h-3 w-full text-rose"
                   viewBox="0 0 200 12"
@@ -200,20 +191,20 @@ export default function Hero() {
 
           <AnimatedCard delay={160}>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink/70 text-pretty">
-              RoseraOps helps companies reduce AI waste, train teams to use AI
-              responsibly, and build workflows that increase productivity without
-              replacing human judgment.
+              RoseraOps starts with audit-led AI cost intelligence, then productizes
+              the repeatable patterns into software for AI spend visibility, workflow
+              optimization, and human-first AI adoption.
             </p>
           </AnimatedCard>
 
           <AnimatedCard delay={240}>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href={MAILTO} className="btn-primary">
-                {CTA_PRIMARY}
+                Start an AI SpendOps Audit
                 <span aria-hidden>→</span>
               </a>
-              <a href="#method" className="btn-ghost">
-                {CTA_SECONDARY}
+              <a href="#thesis" className="btn-ghost">
+                View the Platform Thesis
               </a>
             </div>
           </AnimatedCard>
@@ -224,7 +215,7 @@ export default function Hero() {
                 <Sprout /> Audit-led, not tool-led
               </span>
               <span className="flex items-center gap-2">
-                <Sprout /> Human-first by design
+                <Sprout /> Built to become software
               </span>
               <span className="flex items-center gap-2">
                 <Sprout /> Value per AI dollar
