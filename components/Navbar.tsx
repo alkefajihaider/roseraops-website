@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { COMPANY, MAILTO, NAV_LINKS } from '@/lib/constants';
+import { COMPANY, MAILTO, NAV_LINKS as BASE_NAV_LINKS } from '@/lib/constants';
+
+const NAV_LINKS = BASE_NAV_LINKS.filter((link) => link.href !== '#method');
 
 function RoseMark() {
-  // Minimal rose-on-a-stem mark: a bloom built from petal arcs over a stem + leaf.
   return (
     <svg
       width="30"
@@ -43,7 +44,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Lock body scroll while mobile menu is open
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => {
@@ -83,8 +83,9 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
+
             <a href={MAILTO} className="btn-primary">
-              Start Conversation
+              Start AI SpendOps Audit
             </a>
           </div>
 
@@ -117,7 +118,6 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* Mobile menu */}
       <div
         id="mobile-menu"
         className={`glass absolute inset-x-0 top-full origin-top overflow-hidden border-t border-ink/5 shadow-soft transition-all duration-300 lg:hidden ${
@@ -136,13 +136,14 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+
           <li className="px-1 pt-2">
             <a
               href={MAILTO}
               onClick={() => setOpen(false)}
               className="btn-primary w-full"
             >
-              Start Conversation
+              Start AI SpendOps Audit
             </a>
           </li>
         </ul>
