@@ -30,14 +30,14 @@ export default function Home() {
         <Hero />
         <ProblemSection />
         <PhilosophySection />
-        <BeliefSection />
+    
         <ServicesSection />
-        <MethodSection />
+    
         <BuiltWithMethodSection />
-        <ProofPointSection />
+      
         <ResearchSection />
         <ThesisSection />
-        <TrainingRulesSection />
+      
         <FounderThesisSection />
         <CTASection />
       </main>
